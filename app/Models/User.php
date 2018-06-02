@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','introduction','avatar'
+        'name', 'email', 'password', 'introduction', 'avatar'
     ];
 
     /**
@@ -29,7 +29,13 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token',];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function topics ()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }
