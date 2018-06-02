@@ -8,12 +8,27 @@
 
 namespace App\Handlers;
 
+use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
 
+/**
+ * Class ImageUploadHandler
+ * @package App\Handlers
+ */
 class ImageUploadHandler
 {
+    /**
+     * @var array
+     */
     protected $allowed_ext = ["png", "jpg", "gif", 'jpeg'];
 
+    /**
+     * @param UploadedFile $file
+     * @param string $folder
+     * @param int|string $file_prefix
+     * @param bool $max_width
+     * @return array|bool
+     */
     public function save ( $file, $folder, $file_prefix, $max_width = false )
     {
         $folder_name = "uploads/images/$folder/" . date("Ym/d", time());
@@ -32,6 +47,10 @@ class ImageUploadHandler
         return ['path' => config('app.url') . "/$folder_name/$filename"];
     }
 
+    /**
+     * @param string $file_path
+     * @param int $max_width
+     */
     public function reduceSize ( $file_path, $max_width )
     {
         $image = Image::make($file_path);
