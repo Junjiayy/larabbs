@@ -26842,7 +26842,7 @@ function ajaxExtend( target, src ) {
 	return target;
 }
 
-/* Handlers responses to an ajax request:
+/* Handles responses to an ajax request:
  * - finds the right dataType (mediates between content-type and expected dataType)
  * - returns the corresponding response
  */
@@ -38598,7 +38598,7 @@ function genAssignmentCode (
 
 /**
  * Parse a v-model expression into a base path and a final key segment.
- * Handlers both dot-path and possible square brackets.
+ * Handles both dot-path and possible square brackets.
  *
  * Possible cases:
  *
