@@ -30,3 +30,4 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::resource('users','UsersController')->only(['show','edit','update']);
 Route::resource('topics', 'TopicsController');
+Route::resource('categories', 'CategoriesController')->only(['show']);
