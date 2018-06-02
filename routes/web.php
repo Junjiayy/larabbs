@@ -29,8 +29,8 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::resource('users','UsersController')->only(['show','edit','update']);
-Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 Route::resource('topics', 'TopicsController')->except(['show']);
+Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 Route::resource('categories', 'CategoriesController')->only(['show']);
 
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
