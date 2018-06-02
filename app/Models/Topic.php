@@ -9,6 +9,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Topic
@@ -79,5 +80,13 @@ class Topic extends Model
     public function link ( $params = [] )
     {
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies (  ) : HasMany
+    {
+        return $this->hasMany(Reply::class);
     }
 }

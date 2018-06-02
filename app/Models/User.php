@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -34,9 +35,17 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function topics ()
+    public function topics () : HasMany
     {
         return $this->hasMany(Topic::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function replies (  ) : HasMany
+    {
+        return $this->hasMany(Reply::class);
     }
 
     /**
