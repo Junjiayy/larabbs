@@ -18,7 +18,7 @@ class Reply extends Model
     /**
      * @return BelongsTo
      */
-    public function user (  ) : BelongsTo
+    public function user (  )
     {
         return $this->belongsTo(User::class);
     }
@@ -26,7 +26,7 @@ class Reply extends Model
     /**
      * @return BelongsTo
      */
-    public function topic (  ) : BelongsTo
+    public function topic (  )
     {
         return $this->belongsTo(Topic::class);
     }
