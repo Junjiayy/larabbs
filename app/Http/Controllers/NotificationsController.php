@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use Auth;
 
+/**
+ * Class NotificationsController
+ * @package App\Http\Controllers
+ */
 class NotificationsController extends Controller
 {
+    /**
+     * NotificationsController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $notifications = Auth::user()->notifications()->paginate(20);

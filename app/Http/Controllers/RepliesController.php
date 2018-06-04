@@ -7,14 +7,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ReplyRequest;
 use Auth;
 
+/**
+ * Class RepliesController
+ * @package App\Http\Controllers
+ */
 class RepliesController extends Controller
 {
+    /**
+     * RepliesController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function store(ReplyRequest $request, Reply $reply)
+    /**
+     * @param ReplyRequest $request
+     * @param Reply $reply
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store( ReplyRequest $request, Reply $reply)
     {
         $reply->content = $request->get('content');
         $reply->user_id = Auth::id();
@@ -24,7 +36,13 @@ class RepliesController extends Controller
         return redirect()->to($reply->topic->link())->with('success', '创建成功！');
     }
 
-    public function destroy(Reply $reply)
+    /**
+     * @param Reply $reply
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function destroy( Reply $reply)
     {
         $this->authorize('destroy', $reply);
         $reply->delete();
