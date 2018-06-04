@@ -25,5 +25,6 @@ $api->version('v1',['namespace'=>'App\Http\Controllers\Api'],function ( $api ) {
         $api->post('verificationCodes','VerificationCodesController@store')->name('api.verificationCodes.store');
         $api->post('users', 'UsersController@store')->name('api.users.store');
         $api->post('captchas', 'CaptchasController@store')->name('api.captchas.store');
+        $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')->name('api.socials.authorizations.store');
     });
 });
