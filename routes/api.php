@@ -42,7 +42,7 @@ $api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => 'ser
     ], function ($api) {
         /*** @var \Dingo\Api\Routing\Router $api */
         /*** 无需验证token的接口 */
-
+        $api->get('categories', 'CategoriesController@index')->name('api.categories.index');
         /*** 需要 token 验证的接口 */
         $api->group(['middleware' => 'api.auth'], function($api) {
             /*** @var \Dingo\Api\Routing\Router $api */
