@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 $api = app(\Dingo\Api\Routing\Router::class);
 
-$api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => 'serializer:array'],function ( $api ) {
+$api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => ['serializer:array','bindings']],function ( $api ) {
     /*** @var \Dingo\Api\Routing\Router $api */
     $api->group([
         'middleware' => 'api.throttle',
@@ -50,6 +50,7 @@ $api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => 'ser
             $api->patch('user', 'UsersController@update')->name('api.user.update');
             $api->post('images', 'ImagesController@store')->name('api.images.store');
             $api->post('topics', 'TopicsController@store')->name('api.topics.store');
+            $api->patch('topics/{topic}', 'TopicsController@update')->name('api.topics.update');
         });
     });
 });
