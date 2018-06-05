@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 $api = app(\Dingo\Api\Routing\Router::class);
 
-$api->version('v1',['namespace'=>'App\Http\Controllers\Api'],function ( $api ) {
+$api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => 'serializer:array'],function ( $api ) {
     /*** @var \Dingo\Api\Routing\Router $api */
     $api->group([
         'middleware' => 'api.throttle',
@@ -34,5 +34,19 @@ $api->version('v1',['namespace'=>'App\Http\Controllers\Api'],function ( $api ) {
             $api->delete('current', 'AuthorizationsController@destroy')->name('api.authorizations.destroy');
         });
 
+    });
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => config('api.rate_limits.access.limit'),
+        'expires' => config('api.rate_limits.access.expires'),
+    ], function ($api) {
+        /*** @var \Dingo\Api\Routing\Router $api */
+        /*** 无需验证token的接口 */
+
+        /*** 需要 token 验证的接口 */
+        $api->group(['middleware' => 'api.auth'], function($api) {
+            /*** @var \Dingo\Api\Routing\Router $api */
+            $api->get('user', 'UsersController@me')->name('api.user.show');
+        });
     });
 });
