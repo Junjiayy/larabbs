@@ -59,6 +59,7 @@ $api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => ['se
             $api->delete('topics/{topic}', 'TopicsController@destroy')->name('api.topics.destroy');
             $api->post('topics/{topic}/replies', 'RepliesController@store')->name('api.topics.replies.store');
             $api->delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')->name('api.topics.replies.destroy');
+            $api->get('user/notifications', 'NotificationsController@index')->name('api.user.notifications.index');
         });
     });
 });
