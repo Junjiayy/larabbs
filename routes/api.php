@@ -61,6 +61,7 @@ $api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => ['se
             $api->delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')->name('api.topics.replies.destroy');
             $api->get('user/notifications', 'NotificationsController@index')->name('api.user.notifications.index');
             $api->get('user/notifications/stats', 'NotificationsController@stats')->name('api.user.notifications.stats');
+            $api->patch('user/read/notifications', 'NotificationsController@read')->name('api.user.notifications.read');
         });
     });
 });
