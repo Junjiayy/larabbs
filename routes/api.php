@@ -51,6 +51,7 @@ $api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => ['se
             $api->post('images', 'ImagesController@store')->name('api.images.store');
             $api->post('topics', 'TopicsController@store')->name('api.topics.store');
             $api->patch('topics/{topic}', 'TopicsController@update')->name('api.topics.update');
+            $api->delete('topics/{topic}', 'TopicsController@destroy')->name('api.topics.destroy');
         });
     });
 });
