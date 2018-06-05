@@ -92,4 +92,13 @@ class TopicsController extends Controller
 
         return $this->response->paginator($topics, new TopicTransformer());
     }
+
+    /**
+     * @param Topic $topic
+     * @return \Dingo\Api\Http\Response
+     */
+    public function show( Topic $topic)
+    {
+        return $this->response->item($topic, new TopicTransformer());
+    }
 }
