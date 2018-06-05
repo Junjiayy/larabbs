@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Transformers\UserTransformer;
 use Cache;
 use Auth;
+use App\Models\Image;
 
 /**
  * Class UsersController
@@ -50,5 +51,21 @@ class UsersController extends Controller
     public function me ()
     {
         return $this->response->item($this->user(), new UserTransformer());
+    }
+
+    public function update ( UserRequest $request )
+    {
+        $user = $this->user();
+
+        $attributes = $request->only(['name', 'email', 'introduction']);
+
+        if ($request->avatar_image_id) {
+            $image = Image::find($request->avatar_image_id);
+
+            $attributes['avatar'] = $image->path;
+        }
+        $user->update($attributes);
+
+        return $this->response->item($user, new UserTransformer());
     }
 }

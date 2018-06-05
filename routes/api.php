@@ -47,6 +47,8 @@ $api->version('v1',['namespace'=>'App\Http\Controllers\Api','middleware' => 'ser
         $api->group(['middleware' => 'api.auth'], function($api) {
             /*** @var \Dingo\Api\Routing\Router $api */
             $api->get('user', 'UsersController@me')->name('api.user.show');
+            $api->patch('user', 'UsersController@update')->name('api.user.update');
+            $api->post('images', 'ImagesController@store')->name('api.images.store');
         });
     });
 });
